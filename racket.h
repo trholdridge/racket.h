@@ -55,5 +55,7 @@ typename std::enable_if<!Streamable<T>, void>::type general_print(T&& arg) {
 #define GET_ARGS(...) __VA_ARGS__
 #define lambda(args, body) [&](FOR_EACH(MAKE_AUTO, GET_ARGS args)) {return body;};
 #define λ lambda
+#define ⁡ int main() {
+#define ⁢ }
 
 #endif
