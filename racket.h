@@ -48,13 +48,13 @@ typename std::enable_if<!Streamable<T>, void>::type general_print(T&& arg) {
 }
 
 #define ⁣ ,
-#define ​(b) fun(b);
+#define ​(b) fun(b)
 #define ‌(b) general_print(fun(b));
 #define MAKE_AUTO(arg) auto arg
 #define fun(a, ...) a(__VA_ARGS__)
 #define define(x, value) auto x = value;
 #define GET_ARGS(...) __VA_ARGS__
-#define lambda(args, body) [&](FOR_EACH(MAKE_AUTO, GET_ARGS args)) {return body;};
+#define lambda(args, body) [&](FOR_EACH(MAKE_AUTO, GET_ARGS args)) {return body;}
 #define λ lambda
 #define ⁡ int main() {
 #define ⁢ }
