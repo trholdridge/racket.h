@@ -5,6 +5,7 @@
 #include <concepts>
 #include <cstdint>
 #include <cxxabi.h>
+#include <initializer_list>
 #include <vector>
 
 #define PARENS ()
@@ -57,5 +58,47 @@ typename std::enable_if<!Streamable<T>, void>::type general_print(T&& arg) {
 #define λ lambda
 #define ⁡ int main() {
 #define ⁢ }
+#define plus(...) plus_({__VA_ARGS__})
+#define minus(...) minus_({__VA_ARGS__})
+#define mult(...) mult_({__VA_ARGS__})
+#define div(...) div_({__VA_ARGS__})
 
+template<typename Num> Num plus_(std::initializer_list<Num> args) {
+  auto sum = 0;
+  for (auto arg : args) {
+    sum += arg;
+  }
+  return sum;
+}
+
+template<typename Num> Num minus_(std::initializer_list<Num> args) {
+  auto sum = 0;
+  for (auto arg : args) {
+    sum -= arg;
+  }
+  return sum;
+}
+
+template<typename Num> Num mult_(std::initializer_list<Num> args) {
+  auto sum = 1;
+  for (auto arg : args) {
+    sum *= arg;
+  }
+  return sum;
+}
+
+template<typename Num> Num div_(std::initializer_list<Num> args) {
+  auto sum = 0;
+  bool hasStarted = false;
+  for (auto arg : args) {
+    if (!hasStarted) {
+      sum = arg;
+      hasStarted = true;
+    } else {
+      sum /= arg;
+    }
+  }
+  return sum;
+}
+		
 #endif
